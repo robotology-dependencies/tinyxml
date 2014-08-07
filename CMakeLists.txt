@@ -59,7 +59,17 @@ set(tinyxml_HDRS
 
 add_definitions("-DTIXML_USE_STL")
 
-add_library(tinyxml SHARED ${tinyxml_SRCS})
+#In Windows (Visual Studio) it is necessary to specify the postfix
+#of the debug library name. Furthermore no symbols are exported by 
+#TinyXML, so it is necessary to compile it as a static library.
+IF(MSVC)
+    SET(CMAKE_DEBUG_POSTFIX "d")
+    SET(LIB_TYPE STATIC)
+ELSE(MSVC)
+    SET(LIB_TYPE SHARED)
+ENDIF(MSVC)
+
+add_library(tinyxml ${LIB_TYPE} ${tinyxml_SRCS})
 
 set_target_properties(tinyxml PROPERTIES VERSION ${TINYXML_VERSION}
                                          SOVERSION ${TINYXML_VERSION}
@@ -72,6 +82,7 @@ install(TARGETS tinyxml
         EXPORT TinyXMLTargets
         RUNTIME DESTINATION "${TINYXML_INSTALL_BIN_DIR}" COMPONENT bin
         LIBRARY DESTINATION "${TINYXML_INSTALL_LIB_DIR}" COMPONENT shlib
+        ARCHIVE DESTINATION "${TINYXML_INSTALL_LIB_DIR}" COMPONENT lib
         PUBLIC_HEADER DESTINATION "${TINYXML_INSTALL_INCLUDE_DIR}" COMPONENT dev)
 set(TINYXML_TARGETS tinyxml)
 
