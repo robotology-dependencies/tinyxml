@@ -60,14 +60,14 @@ set(tinyxml_HDRS
 add_definitions("-DTIXML_USE_STL")
 
 #In Windows (Visual Studio) it is necessary to specify the postfix
-#of the debug library name. Furthermore no symbols are exported by 
+#of the debug library name. Furthermore no symbols are exported by
 #TinyXML, so it is necessary to compile it as a static library.
-IF(MSVC)
-    SET(CMAKE_DEBUG_POSTFIX "d")
-    SET(LIB_TYPE STATIC)
-ELSE(MSVC)
-    SET(LIB_TYPE SHARED)
-ENDIF(MSVC)
+if(MSVC)
+    set(CMAKE_DEBUG_POSTFIX "d")
+    set(LIB_TYPE STATIC)
+else(MSVC)
+    set(LIB_TYPE SHARED)
+endif(MSVC)
 
 add_library(tinyxml ${LIB_TYPE} ${tinyxml_SRCS})
 
