@@ -94,7 +94,8 @@ write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/TinyXMLConfigVersio
                                  VERSION ${TINYXML_VERSION}
                                  COMPATIBILITY AnyNewerVersion)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/TinyXMLConfigVersion.cmake
-        DESTINATION ${TINYXML_INSTALL_CMAKE_DIR})
+        DESTINATION ${TINYXML_INSTALL_CMAKE_DIR}
+        COMPONENT cmake)
 
 
 # TinyXMLConfig.cmake (build tree)
@@ -123,7 +124,8 @@ configure_package_config_file(TinyXMLConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/TinyXMLConfigInstall.cmake
         DESTINATION ${TINYXML_INSTALL_CMAKE_DIR}
-        RENAME TinyXMLConfig.cmake)
+        RENAME TinyXMLConfig.cmake
+        COMPONENT cmake)
 
 
 # TinyXMLTargets.cmake (build tree)
@@ -134,4 +136,5 @@ export(TARGETS ${TINYXML_TARGETS}
 # TinyXMLTargets.cmake (installed)
 install(EXPORT TinyXMLTargets
         NAMESPACE "TinyXML::"
-        DESTINATION ${TINYXML_INSTALL_CMAKE_DIR})
+        DESTINATION ${TINYXML_INSTALL_CMAKE_DIR}
+        COMPONENT cmake)
