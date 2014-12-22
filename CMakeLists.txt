@@ -138,3 +138,15 @@ install(EXPORT TinyXMLTargets
         NAMESPACE "TinyXML::"
         DESTINATION ${TINYXML_INSTALL_CMAKE_DIR}
         COMPONENT cmake)
+
+# pkgconfig files
+configure_file(${CMAKE_SOURCE_DIR}/tinyxml.pc.in
+               ${CMAKE_BINARY_DIR}/tinyxmlInstall.pc
+               @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/tinyxml-uninstalled.pc.in
+               ${CMAKE_BINARY_DIR}/tinyxml.pc
+               @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/tinyxmlInstall.pc
+        DESTINATION ${TINYXML_INSTALL_LIB_DIR}/pkgconfig
+        RENAME pkgconfig.pc
+        COMPONENT pkgconfig)

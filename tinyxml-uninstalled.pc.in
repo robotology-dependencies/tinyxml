@@ -1,0 +1,10 @@
+prefix=/nonexistent
+exec_prefix=/nonexistent
+abs_top_builddir=@CMAKE_BINARY_DIR@
+abs_top_srcdir=@CMAKE_SOURCE_DIR@
+
+Name: TinyXml
+Description: simple, small, C++ XML parser
+Version: @TINYXML_VERSION@
+Libs: @CMAKE_BINARY_DIR@/libtinyxml.so
+Cflags: -I@CMAKE_SOURCE_DIR@
